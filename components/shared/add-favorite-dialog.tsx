@@ -2,12 +2,12 @@
 
 import type React from "react";
 import { useState } from "react";
-import { X, Heart, ImageIcon, Link, FileText } from "lucide-react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+
 import VoiceRecorder from "./voice-recorder";
 import {
   Select,
@@ -104,7 +104,7 @@ export function AddFavoriteDialog({
               Record Audio :{" "}
               <span className="font-light text-gray-700">{status}</span>
             </Label>
-            <VoiceRecorder onUpload={(url) => {}} setStatus={setStatus} />
+            <VoiceRecorder onUpload={() => {}} setStatus={setStatus} />
           </div>
           <div className="flex gap-2 pt-2">
             <Button

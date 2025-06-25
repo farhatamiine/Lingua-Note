@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ReactMediaRecorder } from "react-media-recorder";
 import { Button } from "../ui/button";
-import { Mic, StopCircle, Upload, UploadCloud } from "lucide-react";
+import { Mic, StopCircle, UploadCloud } from "lucide-react";
 
 export default function VoiceRecorder({
   onUpload,
@@ -51,7 +51,13 @@ export default function VoiceRecorder({
                 />
                 <Button
                   size="sm"
-                  onClick={() => {}}
+                  onClick={() => {
+                    setUploading(true);
+                    if (mediaBlobUrl) {
+                      onUpload(mediaBlobUrl);
+                    }
+                    setUploading(false);
+                  }}
                   disabled={uploading}
                   className="ml-2 flex items-center gap-1"
                 >
