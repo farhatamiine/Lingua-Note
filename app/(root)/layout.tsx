@@ -43,7 +43,7 @@ export default function MobileLayout({
   return (
     <div className="min-h-screen bg-background">
       <AppNavbar {...finalNavbarProps} />
-      <div className="pb-20 px-4 py-8">
+      <div className="pb-20 ">
         <div className="max-w-md mx-auto space-y-6">{children}</div>
       </div>
 
