@@ -2,7 +2,7 @@
 
 import { AddFavoriteDialog } from "@/components/shared/add-favorite-dialog";
 import { FloatingActionButton } from "@/components/shared/floating-action-button";
-import NotesList from "@/components/shared/notes-list";
+import NotesList from "@/components/shared/notes/notes-list";
 import { Notes } from "@/lib/generated/prisma";
 import React, { useState } from "react";
 

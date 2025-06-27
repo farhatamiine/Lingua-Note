@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardContent } from "../ui/card";
-import { Badge } from "../ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Notes } from "@/lib/generated/prisma";
 
 interface NoteProps {
@@ -10,8 +10,9 @@ interface NoteProps {
 export default function NoteCard({ note }: NoteProps) {
   const { learningText, nativeText, pronunciation, voiceUrl, noteType, tags } =
     note;
+
   return (
-    <Card className="shadow-sm mb-2 w-full">
+    <Card className="shadow-sm mb-2 w-full cursor-pointer transition-all hover:shadow-md hover:bg-muted active:scale-[0.98] active:opacity-90">
       <CardContent className="pt-4 space-y-2">
         <div className="flex w-full flex-col">
           <div>
@@ -19,7 +20,7 @@ export default function NoteCard({ note }: NoteProps) {
             <p className="text-sm text-muted-foreground">{nativeText}</p>
             {pronunciation && (
               <p className="text-xs italic text-muted-foreground">
-                Prononciation: {pronunciation}
+                Pronunciation: {pronunciation}
               </p>
             )}
           </div>
