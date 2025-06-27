@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
-import VoiceRecorder from "./voice-recorder";
+//import VoiceRecorder from "@/components/shared/voice-recorder";
+
 import {
   Select,
   SelectContent,
@@ -35,7 +36,7 @@ export function AddFavoriteDialog({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [selectedType, setSelectedType] = useState("note");
-  const [status, setStatus] = useState("");
+  //const [status, setStatus] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,7 +77,6 @@ export function AddFavoriteDialog({
             <Label htmlFor="native_text">Texte en français</Label>
             <Input id="native_text" placeholder="Texte en français" />
           </div>
-
           <div className="space-y-2">
             <Label htmlFor="learning_text">Traduction en darija</Label>
             <Textarea
@@ -85,7 +85,6 @@ export function AddFavoriteDialog({
               placeholder="Traduction en darija"
             />
           </div>
-
           <div className="space-y-2">
             <Label>Note type</Label>
             <Select name="note_type">
@@ -100,11 +99,16 @@ export function AddFavoriteDialog({
             </Select>
           </div>
           <div className="space-y-2">
+            <Label>Tag</Label>
+            <Input placeholder="Enter a tag" />
+          </div>
+
+          <div className="space-y-2">
             <Label className="">
               Record Audio :{" "}
               <span className="font-light text-gray-700">{status}</span>
             </Label>
-            <VoiceRecorder onUpload={() => {}} setStatus={setStatus} />
+            {/**<VoiceRecorder onUpload={() => {}} setStatus={setStatus} />**/}
           </div>
           <div className="flex gap-2 pt-2">
             <Button

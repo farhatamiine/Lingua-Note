@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactMediaRecorder } from "react-media-recorder";
 import { Button } from "../ui/button";
 import { Mic, StopCircle, UploadCloud } from "lucide-react";
@@ -13,13 +13,19 @@ export default function VoiceRecorder({
   setStatus: (status: string) => void;
 }) {
   const [uploading, setUploading] = useState(false);
+  const [localStatus, setLocalStatus] = useState("idle");
 
+  useEffect(() => {
+    setStatus(localStatus);
+  }, [localStatus, setStatus]);
   return (
     <ReactMediaRecorder
       audio
       onStop={() => setStatus("stop")}
       render={({ status, startRecording, stopRecording, mediaBlobUrl }) => {
-        setStatus(status);
+        if (status !== localStatus) {
+          setLocalStatus(status);
+        }
         return (
           <div className="space-y-2">
             <div className="flex items-center gap-2 ">

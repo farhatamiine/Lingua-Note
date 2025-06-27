@@ -1,27 +1,21 @@
 import React from "react";
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";
+import { Notes } from "@/lib/generated/prisma";
 
 interface NoteProps {
-  note: {
-    nativeText: string;
-    learningText: string;
-    pronunciation?: string;
-    voiceUrl?: string;
-    noteType: string;
-    tags: string[];
-  };
+  note: Notes;
 }
 
 export default function NoteCard({ note }: NoteProps) {
   const { learningText, nativeText, pronunciation, voiceUrl, noteType, tags } =
     note;
   return (
-    <Card className="shadow-sm">
+    <Card className="shadow-sm mb-2 w-full">
       <CardContent className="pt-4 space-y-2">
-        <div className="flex justify-between items-start">
+        <div className="flex w-full flex-col">
           <div>
-            <p className="text-lg font-semibold">{learningText}</p>
+            <p className="text-lg font-semibold text-right">{learningText}</p>
             <p className="text-sm text-muted-foreground">{nativeText}</p>
             {pronunciation && (
               <p className="text-xs italic text-muted-foreground">

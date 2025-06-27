@@ -1,11 +1,10 @@
 import React from "react";
-import noBook from "@/assets/book.png";
 import NoteCard from "./note-card";
-import Image from "next/image";
 import { Book } from "lucide-react";
+import { Notes } from "@/lib/generated/prisma";
 
 interface NotesListProps {
-  notes: any[];
+  notes: Notes[];
 }
 
 export default function NotesList({ notes }: NotesListProps) {
