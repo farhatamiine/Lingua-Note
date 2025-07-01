@@ -19,7 +19,7 @@ export default function NotesList({ notes }: NotesListProps) {
       }
     >
       {notes.length > 0 ? (
-        <div>
+        <div className="mx-2">
           {notes.map((note) => (
             <NoteCard note={note} key={note.id} />
           ))}

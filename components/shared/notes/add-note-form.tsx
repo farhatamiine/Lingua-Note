@@ -4,7 +4,16 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import VoiceRecorder from "@/components/shared/voice-recorder";
+
+import dynamic from "next/dynamic";
+
+const VoiceRecorder = dynamic(
+  () => import("@/components/shared/voice-recorder"),
+  {
+    ssr: false,
+  }
+);
+
 import {
   Select,
   SelectContent,

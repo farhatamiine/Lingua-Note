@@ -1,13 +1,22 @@
-import { PrismaClient } from "./generated/prisma";
-import { withAccelerate } from "@prisma/extension-accelerate";
+import { Pool, neonConfig } from "@neondatabase/serverless";
+import { PrismaNeon } from "@prisma/adapter-neon";
+import { PrismaClient } from "@prisma/client";
+import ws from "ws";
 
-const globalForPrisma = global as unknown as {
-  prisma: PrismaClient;
-};
+// Sets up WebSocket connections, which enables Neon to use WebSocket communication.
+neonConfig.webSocketConstructor = ws;
+const connectionString = `${process.env.DATABASE_URL}`;
+console.log("Connection string : " + connectionString);
 
-const prisma =
-  globalForPrisma.prisma || new PrismaClient().$extends(withAccelerate());
+// Creates a new connection pool using the provided connection string, allowing multiple concurrent connections.
+const pool = new Pool({ connectionString });
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+// Instantiates the Prisma adapter using the Neon connection pool to handle the connection between Prisma and Neon.
+const adapter = new PrismaNeon(pool);
 
-export default prisma;
+// Extends the PrismaClient with a custom result transformer to convert the price and rating fields to strings.
+export const prisma = new PrismaClient({ adapter }).$extends({
+  result: {
+    notes: {},
+  },
+});

@@ -10,7 +10,7 @@ interface PageConfig {
   showMenuButton?: boolean;
 }
 
-const pageConfigs: Record<string, PageConfig> = {
+export const pageConfigs: Record<string, PageConfig> = {
   "/": {
     title: "Lingua Note",
     showMenuButton: true,
@@ -36,11 +36,10 @@ const pageConfigs: Record<string, PageConfig> = {
   },
 };
 
-export function usePageTitle() {
+export function usePageTitle(title?: string) {
   const pathname = usePathname();
-
   const config = pageConfigs[pathname] || {
-    title: "App",
+    title: title || "App",
     showBackButton: true,
   };
 

@@ -1,18 +1,35 @@
+"use client";
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Notes } from "@/lib/generated/prisma";
+import { useRouter } from "next/navigation";
 
 interface NoteProps {
   note: Notes;
 }
 
 export default function NoteCard({ note }: NoteProps) {
-  const { learningText, nativeText, pronunciation, voiceUrl, noteType, tags } =
-    note;
+  const {
+    learningText,
+    nativeText,
+    pronunciation,
+    voiceUrl,
+    noteType,
+    tags,
+    slug,
+  } = note;
+  const router = useRouter();
+
+  const handleNoteClick = () => {
+    router.push(`/notes/${slug}`); // Change this to `/notes/${note.slug}` if you're using slugs
+  };
 
   return (
-    <Card className="shadow-sm mb-2 w-full cursor-pointer transition-all hover:shadow-md hover:bg-muted active:scale-[0.98] active:opacity-90">
+    <Card
+      onClick={handleNoteClick}
+      className="shadow-sm mb-2 w-full cursor-pointer transition-all hover:shadow-md hover:bg-muted active:scale-[0.98] active:opacity-90"
+    >
       <CardContent className="pt-4 space-y-2">
         <div className="flex w-full flex-col">
           <div>

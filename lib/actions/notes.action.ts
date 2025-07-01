@@ -1,6 +1,6 @@
 "use server";
 
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 //Get All Notes
 export async function getAllNotes() {
@@ -13,3 +13,12 @@ export async function getAllNotes() {
 }
 
 export async function saveNote() {}
+
+export async function getNoteDetails(slug: string) {
+  const data = await prisma.notes.findFirst({
+    where: {
+      slug: slug,
+    },
+  });
+  return data;
+}

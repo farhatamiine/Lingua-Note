@@ -5,6 +5,7 @@ import { ArrowLeft, MoreVertical, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
+import { useAppNavbar } from "@/context/app-navbar-context";
 
 interface AppNavbarProps {
   title?: string;
@@ -21,7 +22,6 @@ interface AppNavbarProps {
 }
 
 export function AppNavbar({
-  title,
   showBackButton = false,
   showMenuButton = false,
   showSearchButton = false,
@@ -33,6 +33,8 @@ export function AppNavbar({
   rightContent,
   className,
 }: AppNavbarProps) {
+  const { title } = useAppNavbar();
+
   return (
     <header
       className={cn("sticky top-0 z-40 bg-background border-b", className)}
