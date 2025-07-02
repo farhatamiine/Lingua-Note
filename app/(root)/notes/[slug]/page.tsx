@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import React from "react";
 
 export default async function NoteDetailsPage(props: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = props.params;
+  const { slug } = await props.params;
 
   const note = await getNoteDetails(slug);
 

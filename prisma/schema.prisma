@@ -9,18 +9,30 @@ datasource db {
 }
 
 model Notes {
-  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   nativeText     String
   learningText   String
   pronunciation  String?
   voiceUrl       String?
   noteType       String
-  reviewCount    Int       @default(0)
+  reviewCount    Int           @default(0)
   lastReviewedAt DateTime?
   nextReviewAt   DateTime?
   ease           Int?
   tags           String[]
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  slug           String    @unique
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  slug           String        @unique
+  examples       NoteExample[]
+}
+
+model NoteExample {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  noteId        String   @db.Uuid
+  note          Notes    @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  native        String // Example in native language
+  learning      String // Example in target language
+  pronunciation String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

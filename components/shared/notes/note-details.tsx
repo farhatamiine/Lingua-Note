@@ -1,13 +1,17 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { useAppNavbar } from "@/context/app-navbar-context";
 import { formatted } from "@/lib/utils";
 import { Notes } from "@/types";
+import { NoteExample } from "@prisma/client";
 import React, { useEffect } from "react";
 
 export default function NoteDetails({ note }: { note: Notes }) {
   const { setTitle } = useAppNavbar();
-  const title = `Note: ${note.learningText}`;
+  const title = `${note.learningText}`;
+
+  console.log(note.examples);
 
   useEffect(() => {
     setTitle(title);
@@ -38,6 +42,41 @@ export default function NoteDetails({ note }: { note: Notes }) {
               #{tag}
             </Badge>
           ))}
+        </div>
+        <Separator className="my-4" />
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold text-muted-foreground">
+            Examples
+          </h2>
+
+          {note.examples && note.examples.length > 0 ? (
+            <div className="space-y-2">
+              {note.examples.map((noteExample: NoteExample) => (
+                <div
+                  key={noteExample.id}
+                  className="rounded-xl border p-4 bg-muted/40 shadow-sm transition hover:shadow-md"
+                >
+                  <div className="text-sm text-muted-foreground">Native:</div>
+                  <p className="font-medium">{noteExample.native}</p>
+
+                  <div className="text-sm text-muted-foreground mt-2">
+                    Learning:
+                  </div>
+                  <p className="font-medium text-right">
+                    {noteExample.learning}
+                  </p>
+
+                  <div className="text-sm text-muted-foreground mt-2 italic text-left">
+                    {noteExample.pronunciation}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              No examples available.
+            </p>
+          )}
         </div>
 
         <div className="text-xs text-muted-foreground mt-6 flex justify-between w-full ">

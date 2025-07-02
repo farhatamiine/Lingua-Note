@@ -19,6 +19,9 @@ export async function getNoteDetails(slug: string) {
     where: {
       slug: slug,
     },
+    include: {
+      examples: true,
+    },
   });
   return data;
 }
