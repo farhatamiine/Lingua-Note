@@ -3,6 +3,14 @@ import { createContext, useContext, useState, ReactNode } from "react";
 type AppNavbarContextValue = {
   title: string;
   setTitle: (title: string) => void;
+
+  isAddNewExampleOpen?: boolean;
+  setIsAddNewExampleOpen?: (show: boolean) => void;
+
+  showPlusButton?: boolean;
+  setShowPlusButton?: (show: boolean) => void;
+  onPlusClick?: () => void;
+  setOnPlusClick?: (cb: () => void) => void;
 };
 
 export const AppNavbarContext = createContext<
@@ -11,8 +19,25 @@ export const AppNavbarContext = createContext<
 
 export const AppNavbarProvider = ({ children }: { children: ReactNode }) => {
   const [title, setTitle] = useState("App");
+  const [showPlusButton, setShowPlusButton] = useState(false);
+  const [onPlusClick, setOnPlusClick] = useState<() => void>(() => () => {});
+
+  const [isAddNewExampleOpen, setIsAddNewExampleOpen] =
+    useState<boolean>(false);
+
   return (
-    <AppNavbarContext.Provider value={{ title, setTitle }}>
+    <AppNavbarContext.Provider
+      value={{
+        title,
+        setTitle,
+        setIsAddNewExampleOpen,
+        isAddNewExampleOpen,
+        showPlusButton,
+        setShowPlusButton,
+        onPlusClick,
+        setOnPlusClick,
+      }}
+    >
       {children}
     </AppNavbarContext.Provider>
   );

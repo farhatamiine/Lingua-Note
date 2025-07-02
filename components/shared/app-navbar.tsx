@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { ArrowLeft, MoreVertical, Search } from "lucide-react";
+import { ArrowLeft, MoreVertical, PlusIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
@@ -27,13 +27,12 @@ export function AppNavbar({
   showSearchButton = false,
   showMoreButton = false,
   onBackClick,
-
   onSearchClick,
   onMoreClick,
   rightContent,
   className,
 }: AppNavbarProps) {
-  const { title } = useAppNavbar();
+  const { title, showPlusButton, onPlusClick } = useAppNavbar();
 
   return (
     <header
@@ -81,6 +80,17 @@ export function AppNavbar({
               <MoreVertical className="h-4 w-4" />
             </Button>
           )}
+          {showPlusButton && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onPlusClick}
+              className="h-8 w-8 p-0"
+            >
+              <PlusIcon className="h-4 w-4" />
+            </Button>
+          )}
+
           {rightContent}
         </div>
       </div>

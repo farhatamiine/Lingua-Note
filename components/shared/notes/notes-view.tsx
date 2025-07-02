@@ -1,6 +1,6 @@
 "use client";
 
-import { AddFavoriteDialog } from "@/components/shared/add-favorite-dialog";
+import { AddNewNoteDialog } from "@/components/shared/notes/modal/add-new-note-dialog";
 import { FloatingActionButton } from "@/components/shared/floating-action-button";
 import NotesList from "@/components/shared/notes/notes-list";
 import { Notes } from "@prisma/client";
@@ -16,7 +16,7 @@ export default function NoteView({ notes }: NoteViewProps) {
   return (
     <div>
       {isDialogOpen}
-      <AddFavoriteDialog
+      <AddNewNoteDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         onAdd={() => {}}

@@ -6,18 +6,45 @@ import { formatted } from "@/lib/utils";
 import { Notes } from "@/types";
 import { NoteExample } from "@prisma/client";
 import React, { useEffect } from "react";
+import { AddNewExampleDialog } from "./modal/add-new-note-example-dialog";
 
 export default function NoteDetails({ note }: { note: Notes }) {
-  const { setTitle } = useAppNavbar();
+  const {
+    setTitle,
+    setShowPlusButton,
+    setOnPlusClick,
+    setIsAddNewExampleOpen,
+    isAddNewExampleOpen,
+  } = useAppNavbar();
   const title = `${note.learningText}`;
 
   console.log(note.examples);
 
   useEffect(() => {
     setTitle(title);
-  }, [setTitle, title]);
+    setShowPlusButton?.(true);
+    setOnPlusClick?.(() => () => {
+      setIsAddNewExampleOpen?.(!isAddNewExampleOpen);
+      // Open modal or navigate to form
+    });
+    return () => {
+      setShowPlusButton?.(false); // clean up
+    };
+  }, [
+    setTitle,
+    title,
+    setOnPlusClick,
+    setShowPlusButton,
+    setIsAddNewExampleOpen,
+    isAddNewExampleOpen,
+  ]);
   return (
     <div>
+      <AddNewExampleDialog
+        isOpen={!!isAddNewExampleOpen}
+        onClose={() => setIsAddNewExampleOpen?.(false)}
+        onAdd={() => {}}
+      />
       <div className="bg-white dark:bg-transparent rounded-2xl p-6 shadow-md ">
         <div className="mb-4 space-y-1">
           <p className="text-2xl font-bold text-right">{note.learningText}</p>

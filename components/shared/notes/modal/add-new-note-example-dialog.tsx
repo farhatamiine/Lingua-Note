@@ -3,9 +3,9 @@
 import type React from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AddNoteForm from "./notes/add-note-form";
+import AddNoteForm from "../add-note-form";
 
-interface AddFavoriteDialogProps {
+interface AddNewExampleDialogProps {
   isOpen: boolean;
   onClose: () => void;
   onAdd: (favorite: {
@@ -15,7 +15,10 @@ interface AddFavoriteDialogProps {
   }) => void;
 }
 
-export function AddFavoriteDialog({ isOpen, onClose }: AddFavoriteDialogProps) {
+export function AddNewExampleDialog({
+  isOpen,
+  onClose,
+}: AddNewExampleDialogProps) {
   if (!isOpen) return null;
 
   return (
@@ -24,7 +27,7 @@ export function AddFavoriteDialog({ isOpen, onClose }: AddFavoriteDialogProps) {
 
       <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-50 bg-background rounded-lg border shadow-lg max-w-md mx-auto">
         <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-lg font-semibold">Add Notes</h2>
+          <h2 className="text-lg font-semibold">Add Example</h2>
           <Button
             variant="ghost"
             size="sm"
