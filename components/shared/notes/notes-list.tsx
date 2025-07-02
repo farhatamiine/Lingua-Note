@@ -1,7 +1,7 @@
 import React from "react";
 import NoteCard from "./note-card";
 import { Book } from "lucide-react";
-import { Notes } from "@/lib/generated/prisma";
+import { Notes } from "@prisma/client";
 
 interface NotesListProps {
   notes: Notes[];

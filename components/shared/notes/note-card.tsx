@@ -2,8 +2,9 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Notes } from "@/lib/generated/prisma";
+
 import { useRouter } from "next/navigation";
+import { Notes } from "@prisma/client";
 
 interface NoteProps {
   note: Notes;
