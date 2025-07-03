@@ -5,8 +5,8 @@ export default async function NotePage() {
   const notes = await getAllNotes();
 
   return (
-    <div>
+    <section>
       <NoteView notes={notes} />
-    </div>
+    </section>
   );
 }

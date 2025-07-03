@@ -8,8 +8,6 @@ interface NotesListProps {
 }
 
 export default function NotesList({ notes }: NotesListProps) {
-  console.log(notes.length);
-
   return (
     <div
       className={

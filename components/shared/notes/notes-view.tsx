@@ -15,7 +15,6 @@ export default function NoteView({ notes }: NoteViewProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
     <div>
-      {isDialogOpen}
       <AddNewNoteDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

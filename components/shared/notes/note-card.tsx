@@ -20,6 +20,7 @@ export default function NoteCard({ note }: NoteProps) {
     tags,
     slug,
   } = note;
+
   const router = useRouter();
 
   const handleNoteClick = () => {
@@ -28,6 +29,7 @@ export default function NoteCard({ note }: NoteProps) {
 
   return (
     <Card
+      data-testid="note-card"
       onClick={handleNoteClick}
       className="shadow-sm mb-2 w-full cursor-pointer transition-all hover:shadow-md hover:bg-muted active:scale-[0.98] active:opacity-90"
     >
