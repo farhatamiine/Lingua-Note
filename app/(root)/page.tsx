@@ -1,4 +1,6 @@
-export default async function HomePage() {
+"use client";
+
+export default function HomePage() {
   return (
     <div>
       <h2>Hello world</h2>
